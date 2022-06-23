@@ -8,7 +8,7 @@ len_ma_long = input(471, minval=1, title="Long Moving Average")
 len_ma_short = input(150, minval=1, title="Short Moving Average")
 resolution = input('D', type=input.string, title="Time interval")
 is_show_ma = input(true, type=input.bool, title="Show Moving Averages ?")
-is_alert = input(false, type=input.bool, title="Send an alert on Pi Cycle Top?")
+is_alert = input(false, type=input.bool, title="Send an alert on Pi Cycle Bottom?")
 
 ma_long = security(syminfo.tickerid, resolution, sma(close, len_ma_long)*0.745)
 ma_short = security(syminfo.tickerid, resolution, ema(close, len_ma_short))
