@@ -1,0 +1,23 @@
+// This source code is subject to the terms of the Mozilla Public License 2.0 at https://mozilla.org/MPL/2.0/
+// ©handikogesang
+
+//@version=4
+study("Pi-Cycle Bitcoin Bottom", shorttitle="Pi-Cycle bottom", overlay=true)
+
+len_ma_long = input(471, minval=1, title="Long Moving Average")
+len_ma_short = input(150, minval=1, title="Short Moving Average")
+resolution = input('D', type=input.string, title="Time interval")
+is_show_ma = input(true, type=input.bool, title="Show Moving Averages ?")
+is_alert = input(false, type=input.bool, title="Send an alert on Pi Cycle Top?")
+
+ma_long = security(syminfo.tickerid, resolution, sma(close, len_ma_long)*0.745)
+ma_short = security(syminfo.tickerid, resolution, ema(close, len_ma_short))
+src = security(syminfo.tickerid, resolution, close)
+
+plot(is_show_ma?ma_long:na, color=color.green)
+plot(is_show_ma?ma_short:na, color=color.red)
+
+PiCycleTop = crossover(ma_long, ma_short) ? src + (src/100 * 10) : na
+
+plotshape(PiCycleTop, style=shape.labeldown,size=size.normal, text="Pi Cycle bottom", color=color.red, textcolor=color.white, location=location.absolute)
+alertcondition(condition=PiCycleTop, title="Pi Cycle", message="The Pi Cycle bottom has been reached, historically Bitcoin bottoms within 3 days of reaching this ratio, More info : https://medium.com/@positivecrypto/the-golden-ratio-multiplier-c2567401e12a")
