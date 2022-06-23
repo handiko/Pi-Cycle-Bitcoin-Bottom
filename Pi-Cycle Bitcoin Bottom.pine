@@ -17,7 +17,7 @@ src = security(syminfo.tickerid, resolution, close)
 plot(is_show_ma?ma_long:na, color=color.green)
 plot(is_show_ma?ma_short:na, color=color.red)
 
-PiCycleTop = crossover(ma_long, ma_short) ? src + (src/100 * 10) : na
+PiCycleBottom = crossover(ma_long, ma_short) ? src + (src/100 * 10) : na
 
-plotshape(PiCycleTop, style=shape.labeldown,size=size.normal, text="Pi Cycle bottom", color=color.red, textcolor=color.white, location=location.absolute)
-alertcondition(condition=PiCycleTop, title="Pi Cycle", message="The Pi Cycle bottom has been reached, historically Bitcoin bottoms within 3 days of reaching this ratio, More info : https://medium.com/@positivecrypto/the-golden-ratio-multiplier-c2567401e12a")
+plotshape(PiCycleBottom, style=shape.labeldown,size=size.normal, text="Pi Cycle bottom", color=color.red, textcolor=color.white, location=location.absolute)
+alertcondition(condition=PiCycleBottom, title="Pi Cycle", message="The Pi Cycle bottom has been reached, historically Bitcoin bottoms within 3 days of reaching this ratio, More info : https://medium.com/@positivecrypto/the-golden-ratio-multiplier-c2567401e12a")
